@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = findViewById(R.id.listview);
+//        listView = findViewById(R.id.listview);
         contactArrayList = new ArrayList<>();
         DatabaseHandler db = new DatabaseHandler(MainActivity.this);
 
@@ -45,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 contactArrayList
         );
-
-        //add to our listview
-        listView.setAdapter(arrayAdapter);
-
-        //Attach eventlistener to listview
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("List", "onItemClick: " + contactArrayList.get(position));
-
-            }
-        });
+//
+//        //add to our listview
+//        listView.setAdapter(arrayAdapter);
+//
+//        //Attach eventlistener to listview
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d("List", "onItemClick: " + contactArrayList.get(position));
+//
+//            }
+//        });
     }
 }
