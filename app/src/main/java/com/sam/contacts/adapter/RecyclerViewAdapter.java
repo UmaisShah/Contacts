@@ -1,10 +1,14 @@
 package com.sam.contacts.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,17 +38,44 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Contact contact=contactList.get(position);  //each contact object inside of our list
+
+        //setting data
+        holder.name.setText(contact.getName());
+        holder.number.setText(contact.getPhone_number());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return contactList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView name;
+        public TextView number;
+        ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            imageView=itemView.findViewById(R.id.imageview);
+            imageView.setOnClickListener(this);
+
+            name=itemView.findViewById(R.id.name);
+            number=itemView.findViewById(R.id.number);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position=getAdapterPosition();
+            Contact contact=contactList.get(position);
+            switch (v.getId()){
+                case R.id.imageview:
+                    Log.d("onClick event", "onClick: "+contact.getName());
+                break;
+            }
+
         }
     }
 }
