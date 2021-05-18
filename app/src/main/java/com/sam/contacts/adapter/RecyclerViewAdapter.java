@@ -1,6 +1,7 @@
 package com.sam.contacts.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.text.Layout;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sam.contacts.DetailActivity;
 import com.sam.contacts.R;
 import com.sam.contacts.model.Contact;
 
@@ -58,9 +60,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+
 
             imageView=itemView.findViewById(R.id.imageview);
-            imageView.setOnClickListener(this);
 
             name=itemView.findViewById(R.id.name);
             number=itemView.findViewById(R.id.number);
@@ -70,12 +73,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onClick(View v) {
             int position=getAdapterPosition();
             Contact contact=contactList.get(position);
-            switch (v.getId()){
-                case R.id.imageview:
-                    Log.d("onClick event", "onClick: "+contact.getName());
-                break;
+//            switch (v.getId()){
+//                case R.id.imageview:
+//                    Log.d("onClick event", "onClick: "+contact.getName());
+//                break;
+            Intent intent=new Intent(context, DetailActivity.class);
+            intent.putExtra("name",contact.getName());
+            intent.putExtra("phone",contact.getPhone_number());
+
+            context.startActivity(intent);
             }
 
         }
     }
-}
+
