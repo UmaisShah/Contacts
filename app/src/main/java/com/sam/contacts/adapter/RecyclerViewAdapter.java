@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,7 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
             imageView=itemView.findViewById(R.id.imageview);
             imageView.setOnClickListener(this);
 
@@ -80,21 +81,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                case R.id.imageview:
 //                    Log.d("onClick event", "onClick: "+contact.getName());
 //                break;
-//                    Intent intent=new Intent(context, DetailActivity.class);
-//                    intent.putExtra("name",contact.getName());
-//                    intent.putExtra("phone",contact.getPhone_number());
 //
-//                    context.startActivity(intent);
-
                     DatabaseHandler db = new DatabaseHandler(context);
                     db.deleteContact(contact);
-
                     //update recycler view for item deletion
                     contactList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, contactList.size());
+                    Toast.makeText(context, "Item Deleted", Toast.LENGTH_SHORT).show();
+                    break;
 
-
+                case R.id.card:
+                    int positioncard=getAdapterPosition();
+                    Contact contacts=contactList.get(positioncard);
+                    Intent intent=new Intent(context, DetailActivity.class);
+                    intent.putExtra("name", contacts.getName());
+                    intent.putExtra("phone",contacts.getPhone_number());
+                    context.startActivity(intent);
                     break;
             }
 
