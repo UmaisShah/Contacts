@@ -32,24 +32,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data Goes Here"
-                android:textSize="15sp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                />
 
             <TextView
                 android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/name"
-                android:padding="8dp"
+                android:paddingTop="8dp"
                 android:text="@string/app_name"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                />
 
             <ImageView
                 android:id="@+id/imageview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/ic_launcher_background" />
+                android:background="@drawable/ic_baseline_delete_forever_24" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

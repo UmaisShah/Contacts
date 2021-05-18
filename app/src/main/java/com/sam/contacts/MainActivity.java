@@ -50,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
         //setup adapter
         recyclerViewAdapter=new RecyclerViewAdapter(this,contactArrayList);
         recyclerView.setAdapter(recyclerViewAdapter);
+       // recyclerViewAdapter.notifyDataSetChanged();
 
-
-
-        Contact aa=new Contact("Ali","03129307827");
+//
+        Contact aa=new Contact("umais","03129307827");
+        db.add_Contact(aa);
+        db.add_Contact(aa);
+        db.add_Contact(aa);
         db.add_Contact(aa);
 
 

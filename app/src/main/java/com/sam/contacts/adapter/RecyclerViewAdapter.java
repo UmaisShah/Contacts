@@ -15,7 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sam.contacts.DetailActivity;
+import com.sam.contacts.MainActivity;
 import com.sam.contacts.R;
+import com.sam.contacts.data.DatabaseHandler;
 import com.sam.contacts.model.Contact;
 
 import java.util.List;
@@ -60,10 +62,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
-
-
+//            itemView.setOnClickListener(this);
             imageView=itemView.findViewById(R.id.imageview);
+            imageView.setOnClickListener(this);
 
             name=itemView.findViewById(R.id.name);
             number=itemView.findViewById(R.id.number);
@@ -71,17 +72,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View v) {
-            int position=getAdapterPosition();
-            Contact contact=contactList.get(position);
+            switch (v.getId()){
+                case R.id.imageview:
+                    int position=getAdapterPosition();
+                    Contact contact=contactList.get(position);
 //            switch (v.getId()){
 //                case R.id.imageview:
 //                    Log.d("onClick event", "onClick: "+contact.getName());
 //                break;
-            Intent intent=new Intent(context, DetailActivity.class);
-            intent.putExtra("name",contact.getName());
-            intent.putExtra("phone",contact.getPhone_number());
+//                    Intent intent=new Intent(context, DetailActivity.class);
+//                    intent.putExtra("name",contact.getName());
+//                    intent.putExtra("phone",contact.getPhone_number());
+//
+//                    context.startActivity(intent);
 
-            context.startActivity(intent);
+                    DatabaseHandler db = new DatabaseHandler(context);
+                    db.deleteContact(contact);
+
+                    //update recycler view for item deletion
+                    contactList.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, contactList.size());
+
+
+                    break;
+            }
+
             }
 
         }
