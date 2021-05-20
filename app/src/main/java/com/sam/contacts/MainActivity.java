@@ -53,11 +53,17 @@ public class MainActivity extends AppCompatActivity {
        // recyclerViewAdapter.notifyDataSetChanged();
 
 //
-        Contact aa=new Contact("umais","03129307827");
-        db.add_Contact(aa);
-        db.add_Contact(aa);
-        db.add_Contact(aa);
-        db.add_Contact(aa);
+//        Contact aa=new Contact("Ali","03129307827");
+//        Contact aa1=new Contact("Hassan","03129307000");
+//        Contact aa2=new Contact("Umar","03129300000");
+//        Contact aa3=new Contact("Hinan","0312930000");
+//        Contact aa4=new Contact("Toqeer","031200005");
+//        db.add_Contact(aa);
+//        db.add_Contact(aa1);
+//        db.add_Contact(aa2);
+//        db.add_Contact(aa3);
+//        db.add_Contact(aa4);
+
 
 
         //create array adapter
